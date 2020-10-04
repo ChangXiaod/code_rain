@@ -1,54 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
-</head>
-<body>
-    <canvas id="q" width="500" height="800"></canvas>
-    <script src="jquery.min.js"></script>
-    <script>
-        /*
-            ① 用setInterval(draw, 33)设定刷新间隔
-
-            ② 用String.fromCharCode(1e2+Math.random()*33)随机生成字母
-
-            ③ 用ctx.fillStyle=’rgba(0,0,0,.05)’; ctx.fillRect(0,0,width,height); ctx.fillStyle=’#0F0′; 反复生成opacity为0.5的半透明黑色背景
-
-            ④ 用x = (index * 10)+10;和yPositions[index] = y + 10;顺序确定显示字母的位置
-
-            ⑤ 用fillText(text, x, y); 在指定位置显示一个字母 以上步骤循环进行，就会产生《黑客帝国》的片头效果。
-        */
-        $(document).ready(function () {
-            var s = window.screen;
-            var width = q.width = s.width;
-            var height = q.height;
-            var yPositions = Array(300).join(0).split('');
-            var ctx = q.getContext('2d');
-            var draw = function () {
-                ctx.fillStyle = 'rgba(0,0,0,.05)';
-                ctx.fillRect(0, 0, width, height);
-                ctx.fillStyle = 'green';
-                ctx.font = '10pt Georgia';
-                yPositions.map(function (y, index) {
-                    //text = String.fromCharCode(1e2 + Math.random() * 33);　　//这是随机字母
-                    text = parseInt(Math.random() * 2);
-                    x = (index * 10) + 10;
-                    q.getContext('2d').fillText(text, x, y);
-                    if (y > Math.random() * 1e4) {
-                        yPositions[index] = 0;
-                    } else {
-                        yPositions[index] = y + 10;
-                    }
-                });
-            };
-            RunMatrix();
-            function RunMatrix() {
-                Game_Interval = setInterval(draw, 50);
-            }
-        });
-    </script>
-</body>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>最美小芳</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{
+				background-color: pink;
+			}
+			.girl{
+			width: 250px;
+			height: 300px;
+			position: absolute;
+			left: 0;right: 0;bottom: 0;top: 0;
+			margin: auto;
+			transform-style: preserve-3d;
+			
+			animation: play 25s infinite linear;
+			}
+			p{position: absolute;
+			width: 240px;height: 300px;
+			    border-radius: 20px;
+				overflow: hidden;
+				border: 10px solid rgba(255,255,255,0.5);
+			}
+			h1{font-family: "楷体"; width: 24px;position:absolute;right: 100px;top: 40px; font-size: 30px;color: red;font-weight: 900;}
+			h2{font-family: "楷体"; width: 24px; position:absolute; left: 100px;top: 40px; font-size: 30px;color: red;font-weight: 900;}
+			img{width: 100%;}
+			.top1{
+				background-color: #559911;
+				transform: rotateY(60deg) translateZ(300px);
+			}
+			.top2{
+				background-color: #349;
+				transform: rotateY(60deg) translateZ(-300px);
+			}
+			.top3{
+				background-color: #643;
+				transform: rotateY(120deg) translateZ(300px);
+			}
+			.top4{
+				background-color: #0ff;
+				transform: rotateY(120deg) translateZ(-300px);
+			}
+			.top5{
+				background-color: #111;
+				transform:  translateZ(-300px);
+			}
+			.top6{
+				background-color: greenyellow;
+				transform:  translateZ(300px);
+			}
+			 @keyframes play{
+				0%{transform: rotateX(0) rotateY(36deg);}
+				20%{transform: rotateX(30deg) rotateY(360deg);}
+				40%{transform: rotateX(-30deg) rotateY(720deg);}
+				60%{transform: rotateX(0deg) rotateY(1080deg);}
+				80%{transform: rotateX(30deg) rotateY(1440deg);}
+				100%{transform: rotateX(-30deg) rotateY(1800deg);}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="girl">
+			<p class="top1"><img src="image/girl1.jpg" alt=""></p>
+			<p class="top2"><img src="image/girl2.jpg" alt=""></p>
+			<p class="top3"><img src="image/girl3.jpg" alt=""></p>
+			<p class="top4"><img src="image/girl4.jpg" alt=""></p>
+			<p class="top5"><img src="image/girl5.jpg" alt=""></p>
+			<p class="top6"><img src="image/girl6.jpg" alt=""></p>
+		
+		</div>
+		<h1>所有的努力都不会白费 加油！</h1>
+		<h2>成功的路上每个人都是孤独的</h2>
+		
+	</body>
 </html>
+
